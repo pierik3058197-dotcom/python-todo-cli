@@ -70,3 +70,7 @@ python -m unittest -v
 ```
 
 如果看到 `OK`，说明测试通过。
+
+## 界面预览
+
+![Todo 窗口界面](screenshot.png)
