@@ -43,7 +43,7 @@ python todo_gui.py
 
 ```powershell
 python -m venv .venv
-    .\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\Activate.ps1
 ```
 
 如果 PowerShell 阻止脚本运行，可以执行一次：
