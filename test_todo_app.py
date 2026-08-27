@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from todo_app import add_todo, complete_todo, delete_todo, load_todos
+from todo_app import add_todo, complete_todo, delete_todo, load_todos, renumber_todos
 
 
 class TodoAppTests(unittest.TestCase):
@@ -27,6 +27,14 @@ class TodoAppTests(unittest.TestCase):
         add_todo("删除我", self.file_path)
         self.assertTrue(delete_todo(1, self.file_path))
         self.assertEqual(load_todos(self.file_path), [])
+
+    def test_renumber_todos(self):
+        add_todo("第一项", self.file_path)
+        add_todo("第二项", self.file_path)
+        delete_todo(1, self.file_path)
+        todos = renumber_todos(self.file_path)
+        self.assertEqual(todos[0]["id"], 1)
+        self.assertEqual(todos[0]["title"], "第二项")
 
 
 if __name__ == "__main__":

@@ -3,7 +3,13 @@
 import tkinter as tk
 from tkinter import messagebox
 
-from todo_app import add_todo, complete_todo, delete_todo, load_todos
+from todo_app import (
+    add_todo,
+    complete_todo,
+    delete_todo,
+    load_todos,
+    renumber_todos,
+)
 
 
 class TodoWindow:
@@ -16,6 +22,19 @@ class TodoWindow:
 
         title_label = tk.Label(root, text="待办事项", font=("Microsoft YaHei", 18))
         title_label.pack(pady=(15, 8))
+
+        mode_frame = tk.Frame(root)
+        mode_frame.pack(pady=(0, 8))
+        tk.Label(mode_frame, text="编号模式：").pack(side="left")
+        self.number_mode = tk.StringVar(value="fixed")
+        tk.Radiobutton(
+            mode_frame, text="固定编号", variable=self.number_mode,
+            value="fixed", command=self.number_mode_changed
+        ).pack(side="left")
+        tk.Radiobutton(
+            mode_frame, text="重新编号", variable=self.number_mode,
+            value="renumber", command=self.number_mode_changed
+        ).pack(side="left")
 
         input_frame = tk.Frame(root)
         input_frame.pack(fill="x", padx=20)
@@ -63,6 +82,12 @@ class TodoWindow:
                 tk.END, f"{todo['id']}. [{mark}] {todo['title']}"
             )
 
+    def number_mode_changed(self):
+        """切换到重新编号时，立即整理 JSON 中的编号。"""
+        if self.number_mode.get() == "renumber":
+            renumber_todos()
+        self.refresh_list()
+
     def get_selected_id(self):
         """返回当前选中任务的编号；没有选中时返回 None。"""
         selection = self.todo_list.curselection()
@@ -98,6 +123,8 @@ class TodoWindow:
             return
         if messagebox.askyesno("确认删除", "确定要删除选中的待办事项吗？"):
             delete_todo(todo_id)
+            if self.number_mode.get() == "renumber":
+                renumber_todos()
             self.refresh_list()
 
 

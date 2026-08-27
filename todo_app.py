@@ -56,6 +56,15 @@ def delete_todo(todo_id: int, file_path: Path = DEFAULT_FILE) -> bool:
     return True
 
 
+def renumber_todos(file_path: Path = DEFAULT_FILE) -> list[dict]:
+    """按当前列表顺序把待办事项重新编号为 1、2、3……。"""
+    todos = load_todos(file_path)
+    for number, todo in enumerate(todos, start=1):
+        todo["id"] = number
+    save_todos(todos, file_path)
+    return todos
+
+
 def print_todos(file_path: Path = DEFAULT_FILE) -> None:
     """在终端打印所有待办事项。"""
     todos = load_todos(file_path)
