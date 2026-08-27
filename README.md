@@ -1,6 +1,17 @@
 # Python Todo
 
-这是一个适合 Python 初学者的待办事项项目。它同时提供命令行界面和基于 Python 内置 `tkinter` 的窗口界面，使用 JSON 文件保存数据，并用 `unittest` 编写自动化测试。
+这是一个适合 Python 初学者的待办事项项目。
+
+它同时提供窗口版和命令行版：窗口版使用 Python 自带的 `tkinter`，命令行版用于学习 Python 基础。项目不使用第三方库，使用 JSON 文件保存数据，并用 `unittest` 编写自动化测试。
+
+## 项目结构
+
+    python-todo-cli/
+    ├── todo_app.py       # 核心功能和命令行版本
+    ├── todo_gui.py       # tkinter 窗口界面
+    ├── test_todo_app.py  # 自动化测试
+    ├── README.md         # 项目说明
+    └── .gitignore        # Git 忽略规则
 
 ## 窗口版：推荐初学者使用
 
@@ -32,7 +43,7 @@ python todo_gui.py
 
 ```powershell
 python -m venv .venv
-.venv\Scripts\Activate.ps1
+    .\.venv\Scripts\Activate.ps1
 ```
 
 如果 PowerShell 阻止脚本运行，可以执行一次：
@@ -69,15 +80,19 @@ python -m unittest -v
 
 ## 4. 上传 GitHub
 
-先在 GitHub 网页创建一个名为 `python-todo-cli` 的空仓库，然后在项目目录运行：
+先在 GitHub 网页创建一个名为 `python-todo-cli` 的空仓库。新仓库不要预先创建 README、`.gitignore` 或 License 文件。然后在项目目录运行：
 
 ```powershell
-git init
-git add .
-git commit -m "初始版本：命令行待办事项程序"
-git branch -M main
 git remote add origin https://github.com/你的用户名/python-todo-cli.git
 git push -u origin main
 ```
 
-把最后一行中的地址换成你自己的仓库地址。
+把命令中的地址换成你自己的仓库地址。
+
+以后修改代码后，使用下面三条命令提交并上传新版本：
+
+```powershell
+git add .
+git commit -m "说明这次修改了什么"
+git push
+```
