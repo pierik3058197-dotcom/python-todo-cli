@@ -1,6 +1,23 @@
-# Python Todo CLI
+# Python Todo
 
-这是一个适合 Python 初学者的命令行待办事项项目。它使用 Python 内置的 `argparse` 处理命令，使用 JSON 文件保存数据，并用 `unittest` 编写自动化测试。
+这是一个适合 Python 初学者的待办事项项目。它同时提供命令行界面和基于 Python 内置 `tkinter` 的窗口界面，使用 JSON 文件保存数据，并用 `unittest` 编写自动化测试。
+
+## 窗口版：推荐初学者使用
+
+在项目目录中运行：
+
+```powershell
+python todo_gui.py
+```
+
+窗口打开后：
+
+1. 在输入框输入任务，点击“添加”，或按 Enter。
+2. 在列表中点击一个任务，再点击“完成选中项目”。
+3. 点击一个任务，再点击“删除选中项目”。
+4. “刷新”会重新读取 `todos.json`。
+
+窗口版和命令行版使用同一个 `todos.json`，两边的数据会同步。
 
 ## 1. 创建虚拟环境
 
